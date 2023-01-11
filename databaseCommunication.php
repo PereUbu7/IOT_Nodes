@@ -37,7 +37,7 @@ class DatabaseConnection
 		value6,
 		value7,
 		value8,
-		value9,
+		value9
 		FROM data
 		WHERE node = ?
 		AND dateTime > ?;");
