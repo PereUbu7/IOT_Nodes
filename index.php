@@ -37,6 +37,8 @@
                     placeholder="Startdatum" data-bind="date: chosenStartDate"/>
 				<input class="form-control form-control-sm mb-3" type="date"
                     placeholder="Slutdatum" data-bind="date: chosenEndDate"/>
+					<button type="button mt3" class="btn btn-dark my-3"
+					data-bind="click: loadLogs">Ladda</button>
 
                 <div>
 			        <canvas id="diagram">Canvas not supported in your browser</canvas>
