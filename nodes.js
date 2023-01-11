@@ -62,6 +62,7 @@ let NewLogPostViewModel = function() {
 
 
     self.loadLogs = () => {
+        console.log(window.urlApi);
         $.getJSON(window.urlApi + "?data=true&node=2&from=" + self.chosenStartDate()).then(function (allData) {
             let mappedLogs = $.map(allData, function (item) { 
                 try
