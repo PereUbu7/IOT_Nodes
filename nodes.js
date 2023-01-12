@@ -88,6 +88,7 @@ let NewLogPostViewModel = function() {
             }
             else {
                 self.chart.data = self.createChartData();
+                chart.update();
             }
         });
     }
