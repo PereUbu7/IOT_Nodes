@@ -78,6 +78,8 @@ let NewLogPostViewModel = function() {
                 return a.tidsstämpel > b.tidsstämpel;
             });
 
+            self.logs(mappedLogs);
+
             if(self.chart == null) {
                 self.chart = new Chart(
                     self.diagram,
