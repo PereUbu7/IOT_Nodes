@@ -30,7 +30,7 @@ ko.bindingHandlers.date = {
 function LogPost(data) {
     let self = this;
     
-    self.tidsstämpel = data.dateTime.substring(0, 10);
+    self.tidsstämpel = data.dateTime;
     self.temp = data.value0;
 
     self.humidity = data.value1;
@@ -43,7 +43,7 @@ let NewLogPostViewModel = function() {
     self.chart = null;
 
     // View logs
-    self.chosenStartDate = ko.observable();
+    self.chosenStartDate = ko.observable(new Date().getFullYear());
     self.chosenEndDate = ko.observable();
 
     self.logs = ko.observableArray([]);
@@ -92,6 +92,12 @@ let NewLogPostViewModel = function() {
         let labels = self.filteredLogs().map(l => l.tidsstämpel);
         let temp = self.filteredLogs().map(l => l.temp);
         let humidity = self.filteredLogs().map(l => l.humidity);
+
+        console.log(self.logs());
+        console.log(self.filteredLogs());
+        console.log(labels);
+        console.log(temp);
+        console.log(humidity);
 
         return {
             type: 'line',
