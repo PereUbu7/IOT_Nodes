@@ -53,8 +53,8 @@ let NewLogPostViewModel = function() {
         let end = self.chosenEndDate();
         
         let filteredLogs = ko.utils.arrayFilter(self.logs(), function(row) {
-            return (!start || row.tidsstämpel > start) && 
-                   (!end   || row.tidsstämpel < end);
+            return (!start || row.tidsstämpel > start.toString()) && 
+                   (!end   || row.tidsstämpel < end.toString());
         });
         
         return filteredLogs;
