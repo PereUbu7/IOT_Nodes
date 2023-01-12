@@ -67,7 +67,7 @@ let NewLogPostViewModel = function() {
             let mappedLogs = $.map(allData, function (item) { 
                 try
                 {
-                    return new LogPost(JSON.parse(item.value)); 
+                    return new LogPost(item); 
                 }
                 catch(ex) { 
                     console.error(ex);
@@ -76,7 +76,9 @@ let NewLogPostViewModel = function() {
 
             mappedLogs.sort((a, b) => {
                 return a.tidsstämpel > b.tidsstämpel;
-            })
+            });
+
+            self.logs(mappedLogs);
 
             self.chart = new Chart(
                 self.diagram,
@@ -96,7 +98,12 @@ let NewLogPostViewModel = function() {
             parsing: false,
             data: {
                 labels: labels,
-                datasets: [temp, humidity],
+                datasets: [
+                    {label: 'Temperatur', 
+                    data: temp }, 
+                    {label: 'Relativ luftfuktighet',
+                    data: humidity}
+                ],
             }
         };
     }
