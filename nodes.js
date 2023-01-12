@@ -78,39 +78,40 @@ let NewLogPostViewModel = function() {
                 return a.tidsstämpel > b.tidsstämpel;
             });
 
-            self.logs(mappedLogs);
-
-            self.chart = new Chart(
-                self.diagram,
-                self.createChartConfig()
-            );
+            if(self.chart == null) {
+                self.chart = new Chart(
+                    self.diagram,
+                    self.createChartConfig()
+                );
+            }
+            else {
+                self.chart.data = self.createChartData();
+            }
         });
     }
 
-
-    self.createChartConfig = () => {
+    self.createChartData = () => {
         let labels = self.filteredLogs().map(l => l.tidsstämpel);
         let temp = self.filteredLogs().map(l => l.temp);
         let humidity = self.filteredLogs().map(l => l.humidity);
 
-        console.log(self.logs());
-        console.log(self.filteredLogs());
-        console.log(labels);
-        console.log(temp);
-        console.log(humidity);
+        return {
+            labels: labels,
+            datasets: [
+                {label: 'Temperatur', 
+                data: temp }, 
+                {label: 'Relativ luftfuktighet',
+                data: humidity}
+            ],
+        };
+    }
 
+
+    self.createChartConfig = () => {
         return {
             type: 'line',
             parsing: false,
-            data: {
-                labels: labels,
-                datasets: [
-                    {label: 'Temperatur', 
-                    data: temp }, 
-                    {label: 'Relativ luftfuktighet',
-                    data: humidity}
-                ],
-            }
+            data: self.createChartData()
         };
     }
 
