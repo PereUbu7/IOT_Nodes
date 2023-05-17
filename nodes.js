@@ -43,7 +43,7 @@ let NewLogPostViewModel = function() {
     self.chart = null;
 
     // View logs
-    self.chosenStartDate = ko.observable(new Date().getFullYear());
+    self.chosenStartDate = ko.observable(new Date().toJSON().slice(0,10));
     self.chosenEndDate = ko.observable();
 
     self.logs = ko.observableArray([]);
